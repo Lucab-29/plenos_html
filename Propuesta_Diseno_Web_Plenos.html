@@ -66,9 +66,6 @@ form.search .clear{position:absolute;right:8px;top:9px;border:0;background:trans
 form.search .clear.on{display:block}
 form.search button[type=submit]{height:52px;padding:0 26px;border:0;border-radius:var(--radius);background:var(--red);color:#fff;font-weight:700;font-size:16px;cursor:pointer}
 form.search button[type=submit]:hover{background:var(--red-d)}
-.try{margin-top:12px;font-size:14px;color:var(--ink2);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.try button{border:1px solid var(--line2);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer;font-size:13.5px}
-.try button:hover{border-color:var(--blue);color:var(--blue)}
 
 /* Franja de años */
 .years{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px 8px;margin:4px 0 22px;box-shadow:var(--shadow)}
@@ -100,9 +97,6 @@ form.search button[type=submit]:hover{background:var(--red-d)}
 
 .results{min-width:0}
 .toolbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:10px}
-.tabs{display:flex;background:var(--bg3);border-radius:999px;padding:3px}
-.tabs button{border:0;background:transparent;border-radius:999px;padding:7px 14px;cursor:pointer;font-size:14px;color:var(--ink2);white-space:nowrap}
-.tabs button[aria-selected="true"]{background:#fff;color:var(--ink);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.12)}
 .count{font-size:14.5px;color:var(--ink2);flex:1;min-width:180px}
 .count b{color:var(--ink)}
 .sort{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--ink2)}
@@ -115,7 +109,6 @@ form.search button[type=submit]:hover{background:var(--red-d)}
 /* Tarjetas */
 .list{display:flex;flex-direction:column;gap:12px}
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;display:grid;grid-template-columns:70px 1fr;gap:16px;box-shadow:var(--shadow)}
-.card.dec{grid-template-columns:1fr}
 .thumb{width:70px;height:96px;border:1px solid var(--line);border-radius:4px;object-fit:cover;object-position:top;background:var(--bg3);display:block}
 .thumb.ph{display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);text-align:center;padding:4px}
 .eyebrow{margin:0 0 3px;font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue-d)}
@@ -168,10 +161,9 @@ dialog::backdrop{background:rgba(20,20,24,.55)}
 .declist li{display:grid;grid-template-columns:150px 1fr auto;gap:12px;padding:9px 12px;border-top:1px solid var(--line);font-size:14px;align-items:baseline}
 .declist li:first-child{border-top:0}
 .declist .cd{font-weight:700;font-variant-numeric:tabular-nums}
-.declist a{white-space:nowrap;font-size:13.5px}
+.declist .pg{white-space:nowrap;font-size:13.5px;color:var(--ink2)}
 .perma{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13.5px}
 .perma code{font-size:13px;word-break:break-all;flex:1}
-.cite{font-size:14px;background:var(--bg2);border-left:3px solid var(--line2);padding:8px 12px;margin:0}
 .note-ed{font-size:12.5px;color:var(--muted);margin-top:4px}
 
 /* Notas de la propuesta */
@@ -210,13 +202,13 @@ footer .wrap{padding-top:18px;padding-bottom:26px}
   .today{display:none}
   .count{min-width:100%;order:3}
 }
-@media print{.proto,.drawer,nav,.filters,.years,.try{display:none}}
+@media print{.proto,.drawer,nav,.filters,.years{display:none}}
 </style>
 </head>
 <body>
 <div class="proto" role="note">
   <div class="wrap">
-    <span><b>Prototipo de propuesta</b> · no es el sitio oficial · datos reales del scraping del <span id="corte"></span>, con las correcciones que propone el informe</span>
+    <span><b>Prototipo de propuesta</b> · no es el sitio oficial · datos reales del scraping del 20 de octubre de 2026, con las correcciones que propone el informe</span>
     <button id="notesBtn" type="button" aria-pressed="false" aria-controls="drawer">Ver qué resuelve cada elemento</button>
   </div>
 </div>
@@ -256,13 +248,6 @@ footer .wrap{padding-top:18px;padding-bottom:26px}
       </div>
       <button type="submit">Buscar</button>
     </form>
-    <div class="try" aria-label="Búsquedas de ejemplo"><span>Prueba:</span>
-      <button type="button" data-q="prisión preventiva">prisión preventiva</button>
-      <button type="button" data-q="3671-2014">Casación 3671-2014</button>
-      <button type="button" data-q="1-2019/CIJ-116">1-2019/CIJ-116</button>
-      <button type="button" data-q="caducidad">caducidad</button>
-      <button type="button" data-q="trata de personas">trata de personas</button>
-    </div>
   </section>
 
   <section class="years" aria-labelledby="yt" data-h="H02">
@@ -278,10 +263,6 @@ footer .wrap{padding-top:18px;padding-bottom:26px}
 
     <section class="results" aria-label="Resultados">
       <div class="toolbar">
-        <div class="tabs" role="tablist" aria-label="Vista" data-h="H08">
-          <button role="tab" id="tabP" aria-selected="true" data-v="pubs">Publicaciones</button>
-          <button role="tab" id="tabD" aria-selected="false" data-v="decs">Acuerdos y sentencias</button>
-        </div>
         <button class="btn ftoggle" id="ftoggle" type="button" aria-controls="filters" aria-expanded="false">Filtrar</button>
         <div class="count" id="count" aria-live="polite"></div>
         <label class="sort">Ordenar <select id="sort"><option value="rel">Relevancia</option><option value="new">Más recientes</option><option value="old">Más antiguos</option></select></label>
@@ -307,7 +288,7 @@ footer .wrap{padding-top:18px;padding-bottom:26px}
     <li><span class="hc">H05</span>Cada resultado dice qué es: título, materia, tipo, serie, números, fecha, páginas, tamaño y resumen editorial.</li>
     <li><span class="hc">H06</span>Texto alternativo con el título del documento, botones descriptivos, navegación con teclado y zoom permitido.</li>
     <li><span class="hc">H07</span>Cada búsqueda y cada ficha tienen dirección propia (se ve en la barra del navegador) y se pueden compartir.</li>
-    <li><span class="hc">H08</span>Vista "Acuerdos y sentencias": una ficha por decisión con enlace a la página donde empieza.</li>
+    <li><span class="hc">H08</span>La ficha de cada publicación lista los acuerdos o sentencias que contiene, con la página del PDF donde empieza cada uno.</li>
     <li><span class="hc">H18</span>Las fe de erratas se muestran vinculadas a lo que corrigen, en ambos sentidos.</li>
     <li><span class="hc">H19</span>Rótulos corregidos: "Plenos jurisdiccionales y casatorios" y "Se encontraron N publicaciones".</li>
   </ul>
@@ -316,12 +297,6 @@ footer .wrap{padding-top:18px;padding-bottom:26px}
     <li><span class="hc">H09</span>El registro del 20/02/2024 enlaza ahora el XII Pleno Penal (PL20240220) en lugar de Procesos Constitucionales.</li>
     <li><span class="hc">H10</span>Fechas corregidas: Sexto Pleno Casatorio Civil (01/11/2014), IX Pleno Casatorio Civil (18/01/2017) y Sentencia Plenaria 01-2015 (24/10/2015).</li>
     <li><span class="hc">H12</span>VIII Pleno Casatorio Civil incorporado como "pendiente de archivo"; el cuadernillo del Tribunal Constitucional se retira de Plenos.</li>
-  </ul>
-  <h3>Pruébalo</h3>
-  <ul>
-    <li>Escribe <b>prisión preventiva</b>: aparece el XI Pleno Penal y el acuerdo exacto que lo trata.</li>
-    <li>Elige <b>Civil</b> y <b>Plenos casatorios civiles</b>: la serie completa del I al X.</li>
-    <li>Abre el <b>Primer Pleno Casatorio Civil</b>: verás su fe de erratas vinculada.</li>
   </ul>
 </aside>
 
@@ -357,7 +332,7 @@ const FACETS = [
   { k: 'familia', label: 'Tipo de documento', get: p => p.familia },
   { k: 'serie', label: 'Serie', get: p => p.serie },
 ];
-const state = { q: '', materia: new Set(), familia: new Set(), serie: new Set(), anio: null, vista: 'pubs', sort: 'auto', shown: 10 };
+const state = { q: '', materia: new Set(), familia: new Set(), serie: new Set(), anio: null, sort: 'auto', shown: 10 };
 
 const tokens = q => norm(q).replace(/[«»"“”]/g, ' ').split(/\s+/).filter(t => t.length > 1 || /\d/.test(t)).filter(t => !['de','la','el','los','las','del','en','y','por','con','sobre','casacion','n°','nro'].includes(t));
 const decHit = (d, t) => d._c.includes(t) || d._t.includes(t) || d._x.includes(t);
@@ -371,14 +346,6 @@ function scorePub(p, toks) {
   const hits = decs.filter(d => toks.every(t => decHit(d, t) || p._t.includes(t)) && toks.some(t => decHit(d, t)));
   hits.forEach(d => toks.forEach(t => { if (d._t.includes(t)) s += 4; if (d._c.includes(t)) s += 6; if (d._x.includes(t)) s += 1; }));
   return { s, hits };
-}
-function scoreDec(d, toks) {
-  if (!toks.length) return { s: 0 };
-  const p = d._pub;
-  if (!toks.every(t => decHit(d, t) || p._t.includes(t))) return null;
-  let s = 0;
-  toks.forEach(t => { if (d._t.includes(t)) s += 5; if (d._c.includes(t)) s += 6; if (d._x.includes(t)) s += 1; if (p._t.includes(t)) s += 1; });
-  return { s };
 }
 function passes(p, except) {
   for (const f of FACETS) { if (f.k === except) continue; const set = state[f.k]; if (set.size && !set.has(f.get(p))) return false; }
@@ -402,14 +369,13 @@ function snippet(d, toks) {
 
 function compute() {
   const toks = tokens(state.q);
-  const P = [], Dd = [];
+  const P = [];
   for (const p of PUBS) { const r = scorePub(p, toks); if (r) P.push({ it: p, p, ...r }); }
-  for (const d of DECS) { const r = scoreDec(d, toks); if (r) Dd.push({ it: d, p: d._pub, ...r }); }
-  return { toks, P, Dd };
+  return { toks, P };
 }
-function sortItems(arr, isDec, toks) {
+function sortItems(arr, toks) {
   const mode = state.sort === 'auto' ? (toks.length ? 'rel' : 'new') : state.sort;
-  const byDate = (a, b) => b.p.fecha.localeCompare(a.p.fecha) || (isDec ? (a.it.pag || 0) - (b.it.pag || 0) : 0);
+  const byDate = (a, b) => b.p.fecha.localeCompare(a.p.fecha);
   if (mode === 'new') arr.sort(byDate);
   else if (mode === 'old') arr.sort((a, b) => -byDate(a, b));
   else arr.sort((a, b) => b.s - a.s || byDate(a, b));
@@ -434,7 +400,7 @@ function renderYears(scored) {
   const max = Math.max(1, ...Object.values(tally));
   $('#ystrip').innerHTML = all.map(y => {
     const n = tally[y] || 0, on = state.anio === y;
-    return `<button type="button" data-y="${y}" aria-pressed="${on}" ${n || on ? '' : 'disabled'} aria-label="${y}: ${n} resultados"><span class="n">${n || ''}</span><span class="bar" style="height:${n ? 6 + 46 * n / max : 3}px"></span><span class="y">${y === all[0] || y === all[all.length - 1] ? y : "'" + String(y).slice(2)}</span></button>`;
+    return `<button type="button" data-y="${y}" aria-pressed="${on}" ${n || on ? '' : 'disabled'} aria-label="${y}: ${n} resultados"><span class="n">${n || ''}</span><span class="bar" style="height:${n ? 6 + 46 * n / max : 3}px"></span><span class="y">${y}</span></button>`;
   }).join('');
 }
 function renderChips(toks) {
@@ -467,7 +433,7 @@ function dlBtn(p, extra) {
 }
 function pubCard(x, toks, first) {
   const p = x.it;
-  const match = toks.length && x.hits && x.hits.length ? `<div class="match"><b>Coincide en ${plural(x.hits.length, 'decisión', 'decisiones')}:</b><ul>${x.hits.slice(0, 3).map(d => `<li><b>${hl(d.cod, toks)}</b> · ${hl(d.tema, toks)}${snippet(d, toks) ? `<br><span style="color:var(--ink2)">${hl(snippet(d, toks), toks)}</span>` : ''}${d.pag && p.url ? ` <a href="${esc(p.url)}#page=${d.pag}" target="_blank" rel="noopener">p. ${d.pag}</a>` : ''}</li>`).join('')}</ul></div>` : '';
+  const match = toks.length && x.hits && x.hits.length ? `<div class="match"><b>Coincide en ${plural(x.hits.length, 'decisión', 'decisiones')}:</b><ul>${x.hits.slice(0, 3).map(d => `<li><b>${hl(d.cod, toks)}</b> · ${hl(d.tema, toks)}${snippet(d, toks) ? `<br><span style="color:var(--ink2)">${hl(snippet(d, toks), toks)}</span>` : ''}${d.pag ? ` <span style="color:var(--ink2);white-space:nowrap">· Página ${d.pag}</span>` : ''}</li>`).join('')}</ul></div>` : '';
   return `<article class="card" ${first ? 'data-h="H05"' : ''}>
     ${thumb(p)}
     <div>
@@ -482,35 +448,15 @@ function pubCard(x, toks, first) {
       <div class="actions"><button class="btn" type="button" data-open="${p.id}">Ver ficha</button>${dlBtn(p)}</div>
     </div></article>`;
 }
-function decCard(x, toks, first) {
-  const d = x.it, p = d._pub;
-  const kind = d.clase.startsWith('Corrección') ? 'Fe de erratas' : d.tipo;
-  const sn = toks.length ? snippet(d, toks) : '';
-  return `<article class="card dec" ${first ? 'data-h="H08"' : ''}>
-    <div>
-      <p class="eyebrow">${esc(p.materia)} · ${esc(kind)}</p>
-      <h3>${hl(d.cod, toks)} · ${hl(d.tema, toks)}</h3>
-      <p class="sub">En: <button type="button" data-open="${p.id}">${esc(p.titulo)}</button> · ${fShort(p.fecha)}${d.pag ? ` · desde la página ${d.pag}` : ''}</p>
-      <p class="sum">${hl(sn || d.ext, toks)}</p>
-      <div class="actions">${p.url && d.pag ? `<a class="btn" href="${esc(p.url)}#page=${d.pag}" target="_blank" rel="noopener">${ICON.page}Abrir en la página ${d.pag}</a>` : ''}<button class="btn" type="button" data-open="${p.id}">Ver publicación</button></div>
-    </div></article>`;
-}
-
 function render() {
-  const { toks, P, Dd } = compute();
-  const isDec = state.vista === 'decs';
-  const scored = isDec ? Dd : P;
-  const fP = P.filter(x => passes(x.p)), fD = Dd.filter(x => passes(x.p));
-  const items = isDec ? fD : fP;
-  sortItems(items, isDec, toks);
-  renderFacets(scored); renderYears(scored); renderChips(toks);
-  $('#tabP').textContent = `Publicaciones (${fP.length})`;
-  $('#tabD').textContent = `Acuerdos y sentencias (${fD.length})`;
-  $('#tabP').setAttribute('aria-selected', !isDec); $('#tabD').setAttribute('aria-selected', isDec);
-  const what = isDec ? plural(items.length, 'decisión', 'decisiones') : plural(items.length, 'publicación', 'publicaciones');
+  const { toks, P } = compute();
+  const items = P.filter(x => passes(x.p));
+  sortItems(items, toks);
+  renderFacets(P); renderYears(P); renderChips(toks);
+  const what = plural(items.length, 'publicación', 'publicaciones');
   $('#count').innerHTML = state.q.trim() ? `Se encontraron <b>${what}</b> para «${esc(state.q.trim())}»` : `<b>${what}</b>${(state.anio || FACETS.some(f => state[f.k].size)) ? ' con los filtros elegidos' : ', de la más reciente a la más antigua'}`;
   const shown = items.slice(0, state.shown);
-  $('#list').innerHTML = shown.length ? shown.map((x, i) => isDec ? decCard(x, toks, i === 0) : pubCard(x, toks, i === 0)).join('') :
+  $('#list').innerHTML = shown.length ? shown.map((x, i) => pubCard(x, toks, i === 0)).join('') :
     `<div class="empty"><h3>No encontramos resultados${state.q.trim() ? ` para «${esc(state.q.trim())}»` : ''}</h3><p>Revisa la ortografía, prueba con un número (por ejemplo, 3671-2014) o quita algún filtro.</p><button class="btn" type="button" id="emptyClear">Ver todo el archivo</button></div>`;
   $('#more').style.display = items.length > state.shown ? '' : 'none';
   $('#more').textContent = `Ver más resultados (${items.length - state.shown} restantes)`;
@@ -526,7 +472,6 @@ function writeHash() {
   if (state.q.trim()) h.set('q', state.q.trim());
   FACETS.forEach(f => state[f.k].forEach(v => h.append(f.k, v)));
   if (state.anio) h.set('anio', state.anio);
-  if (state.vista === 'decs') h.set('vista', 'acuerdos');
   if (state.sort !== 'auto') h.set('orden', state.sort);
   if (ficha) h.set('ficha', ficha);
   const s = h.toString();
@@ -537,7 +482,6 @@ function readHash() {
   state.q = h.get('q') || ''; $('#q').value = state.q;
   FACETS.forEach(f => { state[f.k] = new Set(h.getAll(f.k)); });
   state.anio = h.get('anio') ? +h.get('anio') : null;
-  state.vista = h.get('vista') === 'acuerdos' ? 'decs' : 'pubs';
   state.sort = h.get('orden') || 'auto';
   if (h.get('notas')) setTimeout(() => setNotes(true));
   return h.get('ficha');
@@ -548,7 +492,6 @@ function openFicha(id) {
   ficha = p.slug;
   const decs = p.decs || [];
   const perma = 'https://diariooficial.elperuano.pe/plenos/' + p.slug;
-  const cite = `Corte Suprema de Justicia de la República. ${p.titulo}${p.numeros ? ' (' + p.numeros.split(';')[0].trim() + (p.numeros.includes(';') ? ' y otros' : '') + ')' : ''}. Diario Oficial El Peruano, ${fLong(p.fecha)}.`;
   $('#fx').innerHTML = `
    <div class="fx-h">
      <p class="eyebrow">${esc(p.materia)} · ${esc(p.tipo)}</p>
@@ -572,11 +515,9 @@ function openFicha(id) {
      ${p.resumen ? `<h3>Resumen</h3><p style="margin:0">${esc(p.resumen)}</p>` : ''}
      ${p.sintesis ? `<h3>Qué se decidió</h3><p style="margin:0">${esc(p.sintesis)}</p>` : ''}
      ${p.resumen || p.sintesis ? '<p class="note-ed">Resumen editorial de la redacción. No sustituye el texto oficial publicado.</p>' : ''}
-     ${decs.length ? `<h3>Decisiones que contiene (${decs.length})</h3><ul class="declist">${decs.map(d => `<li><span class="cd">${esc(d.cod)}</span><span>${esc(d.tema)}</span>${p.url && d.pag ? `<a href="${esc(p.url)}#page=${d.pag}" target="_blank" rel="noopener">Ir a la p. ${d.pag}</a>` : '<span></span>'}</li>`).join('')}</ul>` : ''}
+     ${decs.length ? `<h3>Decisiones que contiene (${decs.length})</h3><ul class="declist" data-h="H08">${decs.map(d => `<li><span class="cd">${esc(d.cod)}</span><span>${esc(d.tema)}</span>${d.pag ? `<span class="pg">Página ${d.pag}</span>` : '<span></span>'}</li>`).join('')}</ul>` : ''}
      <h3>Enlace permanente (propuesto)</h3>
      <div class="perma" data-h="H07"><code>${esc(perma)}</code><button class="btn" type="button" id="copyP">Copiar</button></div>
-     <h3>Cómo citar</h3>
-     <p class="cite">${esc(cite)}</p>
    </div>`;
   const dlg = $('#ficha');
   if (!dlg.open) dlg.showModal();
@@ -592,12 +533,10 @@ let tmr;
 $('#q').addEventListener('input', e => { clearTimeout(tmr); tmr = setTimeout(() => { state.q = e.target.value; state.shown = 10; render(); }, 180); });
 $('#sf').addEventListener('submit', e => { e.preventDefault(); state.q = $('#q').value; state.shown = 10; render(); $('#list').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
 $('#qclear').onclick = () => { $('#q').value = ''; state.q = ''; render(); $('#q').focus(); };
-document.querySelectorAll('.try button').forEach(b => b.onclick = () => { $('#q').value = b.dataset.q; state.q = b.dataset.q; state.shown = 10; render(); });
 $('#facets').addEventListener('change', e => { const i = e.target; if (!i.dataset.f) return; const s = state[i.dataset.f]; i.checked ? s.add(i.value) : s.delete(i.value); state.shown = 10; render(); });
 $('#ystrip').addEventListener('click', e => { const b = e.target.closest('button[data-y]'); if (!b || b.disabled) return; const y = +b.dataset.y; state.anio = state.anio === y ? null : y; state.shown = 10; render(); });
 $('#chips').addEventListener('click', e => { const b = e.target.closest('button[data-rm]'); if (!b) return; const k = b.dataset.rm; if (k === 'q') { state.q = ''; $('#q').value = ''; } else if (k === 'anio') state.anio = null; else state[k].delete(b.dataset.v); render(); });
 $('#clearAll').onclick = () => { FACETS.forEach(f => state[f.k].clear()); state.anio = null; state.q = ''; $('#q').value = ''; render(); };
-document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => { state.vista = b.dataset.v; state.shown = 10; render(); });
 $('#sort').onchange = e => { state.sort = e.target.value; render(); };
 $('#more').onclick = () => { state.shown += 10; render(); };
 $('#list').addEventListener('click', e => { const b = e.target.closest('[data-open]'); if (b) openFicha(b.dataset.open); if (e.target.id === 'emptyClear') $('#clearAll').click(); });
@@ -607,8 +546,7 @@ $('#notesBtn').onclick = () => setNotes(!document.body.classList.contains('notes
 $('#drawerX').onclick = () => setNotes(false);
 
 /* Inicio */
-$('#corte').textContent = fShort(D.corte);
-$('#ledeN').textContent = `${PUBS.length} publicaciones · ${DECS.length} acuerdos y sentencias · 1999–2025`;
+$('#ledeN').textContent = `${PUBS.length} publicaciones · 1999–2025`;
 const f0 = readHash();
 render();
 if (f0) { const p = PUBS.find(x => x.slug === f0); if (p) openFicha(p.id); }
